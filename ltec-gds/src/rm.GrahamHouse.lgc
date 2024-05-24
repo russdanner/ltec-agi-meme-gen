@@ -1,0 +1,214 @@
+[*********************************************************************
+[ 
+[ rm.GrahamHouse
+[
+[*********************************************************************
+
+[***************************************
+[ LOCAL DEFINES
+[***************************************
+[ none
+#define vBackgroud      v30
+#define vObject         v31
+#define vView           v32
+
+#define vObjectX        v33
+#define vObjectY        v34
+#define vObjectLoop     v35
+#define vObjectCel      v36
+#define vDirection      v37
+
+[***************************************
+[ FIRST CYCLE ONLY
+[***************************************
+if (newRoom) {
+    [ load, draw and discard the picture resource for the current room
+    load.pic(currentRoom);
+    draw.pic(currentRoom);
+    discard.pic(currentRoom);
+    
+    [ do basic room initialization
+    call(lgc.RoomInit);
+        
+    load.view(vw.GrahamNoHat);
+    load.view(vw.Summons);
+    load.view(vw.Hat);
+    load.view(vw.Teapot);
+    load.view(vw.Teacup);
+    load.view(vw.GrahamHouseWindow);
+    load.view(vw.GrahamHouseDoor);
+    load.view(vw.GrahamHatNoFeather);
+    
+    animate.obj(ego);
+    animate.obj(objHat);
+    animate.obj(objTeapot);
+    animate.obj(objTeaCup);    
+    animate.obj(objSummons);    
+    animate.obj(objWindow);    
+    animate.obj(objCabinDoor);    
+    
+    set.view(ego, vw.GrahamNoHat);
+    set.view(objHat, vw.Hat);
+    set.view(objTeapot, vw.Teapot);
+    set.view(objTeaCup, vw.Teacup);
+    set.view(objSummons, vw.Summons);
+    set.view(objWindow, vw.GrahamHouseWindow);
+    set.view(objCabinDoor, vw.GrahamHouseDoor);
+    
+    start.cycling(ego);
+    stop.cycling(objHat);
+    stop.cycling(objTeaCup);
+    stop.cycling(objSummons);
+    stop.cycling(objWindow);
+    stop.cycling(objCabinDoor);
+    
+    set.cel(objCabinDoor, 1);
+    position(objCabinDoor, 26, 131);      
+    position(objWindow, 90, 58);
+
+    set.priority(objHat, 15);
+    position(objHat, 130, 125);
+    draw(objHat);
+    set.priority(objSummons, 15);
+    position(objSummons, 80, 105);
+    draw(objSummons);
+    set.priority(objTeaCup, 15);
+    position(objTeaCup, 55, 105);
+    draw(objTeaCup);
+    set.priority(objTeapot, 15);
+    position(objTeapot, 110, 87);
+    draw(objTeapot);
+
+    assignn(vSleeping, valFalse);
+    assignn(vClockTicks, 0);
+  
+    if ((previousRoom == rm.Title || previousRoom == 0)) {
+        [ when starting or restarting need to position ego
+        erase(ego);
+        position(ego, 74, 150);
+        assignn(vEgoX, 74);
+        assignn(vEgoY, 150);
+        status.line.on();
+        animationInterval = NORMAL_SPEED;
+    }
+
+    draw(objWindow);
+    draw(objCabinDoor);
+    draw(ego);
+    
+    [ display the picture on screen
+    show.pic();    
+}
+
+[***************************************
+[ NON-INPUT CODE 
+[***************************************
+
+if(said("clear", "prompt")) {
+    set.string(inputPrompt, ">");
+}
+
+if(!isset(fKingMessageDisplayed)) {
+  print("You could be playing Let Them Eat Cake ... but let's make AGI Memes instead");
+  set(fKingMessageDisplayed);
+}        
+
+
+if(said("clear", "views")) {
+    erase(o0);
+    erase(o1);
+    erase(o2);
+    erase(o3);
+    erase(o4);
+    erase(o5);
+    erase(o6);
+    erase(o7);
+    erase(o8);
+    erase(o9);
+    erase(o10);
+    erase(o11);
+    erase(o12);
+}
+
+if(said("draw", "object")) {
+    get.num("Object #", vObject);
+    
+    if(equaln(vObject, 0)) { draw(o0);   }
+    if(equaln(vObject, 1)) { draw(o1);   }
+    if(equaln(vObject, 2)) { draw(o2);   }
+    if(equaln(vObject, 3)) { draw(o3);   }
+    if(equaln(vObject, 4)) { draw(o4);   }
+    if(equaln(vObject, 5)) { draw(o5);   }
+    if(equaln(vObject, 6)) { draw(o6);   }
+    if(equaln(vObject, 7)) { draw(o7);   }
+    if(equaln(vObject, 8)) { draw(o8);   }
+    if(equaln(vObject, 9)) { draw(o9);   }
+    if(equaln(vObject, 10)) { draw(o10); }
+    if(equaln(vObject, 11)) { draw(o11); }
+    if(equaln(vObject, 12)) { draw(o12); }
+}
+
+if(said("move", "object")) {
+    get.num("Object #", vObject);
+    get.num("X", vObjectX);
+    get.num("Y", vObjectY);
+    
+    if(equaln(vObject, 0))  { erase(o0);  position.v(o0, vObjectX, vObjectY);  draw(o0);  }
+    if(equaln(vObject, 1))  { erase(o1);  position.v(o1, vObjectX, vObjectY);  draw(o1);  }
+    if(equaln(vObject, 2))  { erase(o2);  position.v(o2, vObjectX, vObjectY);  draw(o2);  }
+    if(equaln(vObject, 3))  { erase(o3);  position.v(o3, vObjectX, vObjectY);  draw(o3);  }
+    if(equaln(vObject, 4))  { erase(o4);  position.v(o4, vObjectX, vObjectY);  draw(o4);  }
+    if(equaln(vObject, 5))  { erase(o5);  position.v(o5, vObjectX, vObjectY);  draw(o5);  }
+    if(equaln(vObject, 6))  { erase(o6);  position.v(o6, vObjectX, vObjectY);  draw(o6);  }
+    if(equaln(vObject, 7))  { erase(o7);  position.v(o7, vObjectX, vObjectY);  draw(o7);  }
+    if(equaln(vObject, 8))  { erase(o8);  position.v(o8, vObjectX, vObjectY);  draw(o8);  }
+    if(equaln(vObject, 9))  { erase(o9);  position.v(o9, vObjectX, vObjectY);  draw(o9);  }
+    if(equaln(vObject, 10)) { erase(o10); position.v(o10, vObjectX, vObjectY); draw(o10); }
+    if(equaln(vObject, 11)) { erase(o11); position.v(o11, vObjectX, vObjectY); draw(o11); }
+    if(equaln(vObject, 12)) { erase(o12); position.v(o12, vObjectX, vObjectY); draw(o12); }
+}
+
+if(said("print")) {
+    get.string(s5, ">", 24, 1, 40);
+    print("%s5");
+}
+
+if(said("set", "view")) {
+    get.num("Object #", vObject);
+    get.num("View #", vView);
+
+    load.view.v(vView);
+    
+    if(equaln(vObject, 0)) { set.view.v(o0, vView);   }
+    if(equaln(vObject, 1)) { set.view.v(o1, vView);   }
+    if(equaln(vObject, 2)) { set.view.v(o2, vView);   }
+    if(equaln(vObject, 3)) { set.view.v(o3, vView);   }
+    if(equaln(vObject, 4)) { set.view.v(o4, vView);   }
+    if(equaln(vObject, 5)) { set.view.v(o5, vView);   }
+    if(equaln(vObject, 6)) { set.view.v(o6, vView);   }
+    if(equaln(vObject, 7)) { set.view.v(o7, vView);   }
+    if(equaln(vObject, 8)) { set.view.v(o8, vView);   }
+    if(equaln(vObject, 9)) { set.view.v(o9, vView);   }
+    if(equaln(vObject, 10)) { set.view.v(o10, vView); }
+    if(equaln(vObject, 11)) { set.view.v(o11, vView); }
+    if(equaln(vObject, 12)) { set.view.v(o12, vView); }
+}
+
+if(said("set", "picture")) {
+    get.num("Picture #", vBackgroud);
+    
+    load.pic(vBackgroud);
+    draw.pic(vBackgroud);
+    discard.pic(vBackgroud);
+    show.pic();        
+}
+
+[***************************************
+[ PROCESS PLAYER INPUT
+[***************************************
+
+:done
+return();
+
+[ DECLARED MESSAGES
+[***************************************

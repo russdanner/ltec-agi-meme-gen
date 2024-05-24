@@ -1,0 +1,1047 @@
+#
+# WinAGI Game Property File
+#
+[General]
+   WinAGIVersion = 2.3
+   GameID = AGIMEM
+   Interpreter = 2.917
+   LastEdit = "5/24/2024 12:47:10 AM"
+   Description = "WinAGI v2 Template Game"
+   GameVersion = "AGI Game version 0.0"
+   About = "AGI Game by <author>"
+   ResDir = src
+   UseResNames = True
+   Author = ""
+   UseLE = False
+   PlatformType = 1
+   Platform = "C:\Program Files (x86)\DOSBox-0.74-3\DOSBox.exe"
+   DOSExec = AGI.exe
+   PlatformOpts = ""
+   CodePage = 437
+   SierraSyntax = False
+   PowerPack = False
+   SourceFileExt = LGC
+
+[Palette]
+   Color0 = &H00000000
+   Color1 = &H00AA0000
+   Color2 = &H0000AA00
+   Color3 = &H00AAAA00
+   Color4 = &H000000AA
+   Color5 = &H00AA00AA
+   Color6 = &H000055AA
+   Color7 = &H00AAAAAA
+   Color8 = &H00555555
+   Color9 = &H00FF5555
+   Color10 = &H0055FF00
+   Color11 = &H00FFFF55
+   Color12 = &H005555FF
+   Color13 = &H00FF55FF
+   Color14 = &H0055FFFF
+   Color15 = &H00FFFFFF
+   
+[WORDS.TOK]
+   Description = ""
+
+[OBJECT]
+   Description = ""
+
+[::BEGIN Logics::]
+[Logic0]
+   CompCRC32 = &H3BC99333
+   CRC32 = &H3BC99333
+   ID = lgc.Main
+   IsRoom = False
+   Size = 1735
+   Description = "This logic runs in every interpreter cycle and calls other logics as needed."
+
+[Logic90]
+   CompCRC32 = &H31E905F6
+   CRC32 = &H31E905F6
+   ID = lgc.GameFunctions
+   IsRoom = False
+   Size = 641
+   Description = "Game-specific functions\n\nYou should use this logic to perform any game specific functions, such as counting down timers, etc and processing player input related to the game (such as examining/using inventory items) and any other things that are required in several rooms that you don't want to duplicate in each room. \n\nThis logic is called from logic 0, on every cycle, unless disableGameFunctions is set.\n\nSierra did not use a separate logic for all this - they just did it all from logic 0. I find it is neater this way, as you can keep your game specific processing separate from other system-related things (although these may require some modification for your game). Also, this makes logic 0 easier to manage."
+
+[Logic91]
+   CompCRC32 = &HD8644111
+   CRC32 = &HD8644111
+   IsRoom = False
+   ID = lgc.Init
+   Size = 162
+   Description = "Initialization\n\nThis logic should only be called once, when the game first starts. See the 'Keyboard Controller' topic in the Help file for details on key assignments."
+
+[Logic92]
+   ID = lgc.RoomInit
+   Description = "Room Initialization\n\nThis logic is called by room logics when they are executed for the first time when a new.room() command is encountered. It takes care of the common items that are done for all rooms."
+   CRC32 = &H8D9F29
+   CompCRC32 = &H8D9F29
+   IsRoom = False
+   Size = 64
+
+[Logic93]
+   ID = lgc.GameHelp
+   Description = "Help Screen\n\nThis screen also demonstrates the use of extended characters in text mode."
+   CRC32 = &H568062BC
+   CompCRC32 = &H568062BC
+   IsRoom = False
+   Size = 1360
+
+[Logic94]
+   ID = lgc.DebugHelp
+   Description = "Debug mode help screen\n\nDisplays a help screen with typical debug mode commands."
+   CRC32 = &HD69C979C
+   CompCRC32 = &HD69C979C
+   IsRoom = False
+   Size = 1077
+
+[Logic95]
+   ID = lgc.Death
+   Description = "Death handler\n\nThis logic is run when the player dies. The death message displayed depends on the value of certain.death."
+   CRC32 = &H582F51C0
+   CompCRC32 = &H582F51C0
+   IsRoom = False
+   Size = 409
+
+[Logic96]
+   ID = lgc.TraceInfo
+   Description = "Tracer Info\n\nThis logic includes the text of agi commands so the trace window will display the command text instead of just numbers."
+   CRC32 = &H3B45B854
+   CompCRC32 = &H3B45B854
+   IsRoom = False
+   Size = 2617
+
+[Logic97]
+   CompCRC32 = &HCCEC84C6
+   CRC32 = &HCCEC84C6
+   ID = lgc.Joystick
+   IsRoom = False
+   Size = 46
+   Description = "Joystick support\n\nIf you intend to support a joystick, use this logic to handle joystick input."
+
+[Logic98]
+   CompCRC32 = &HC2D6E10E
+   CRC32 = &HC2D6E10E
+   ID = lgc.Error
+   IsRoom = False
+   Size = 813
+   Description = "Error Handler\n\nWhen AGI traps an error, this logic will display information on the error and then quit AGI."
+
+[Logic99]
+   CompCRC32 = &H361E9A7
+   CRC32 = &H361E9A7
+   ID = lgc.Debug
+   IsRoom = False
+   Size = 1137
+   Description = "Debug mode\n\nWhen debugging, use this logic to handle debug commands."
+
+[Logic100]
+   CompCRC32 = &H352F5EE1
+   CRC32 = &H352F5EE1
+   ID = rm.Title
+   IsRoom = True
+   Size = 345
+   Description = "Opening/intro\n\nThis is an example of an intro screen, with scrolling credits and a theme song."
+
+[Logic6]
+   ID = rm.GrahamHouse
+   Description = ""
+   CRC32 = &HF06713AE
+   CompCRC32 = &HF06713AE
+   IsRoom = True
+
+[::END Logics::]
+
+[::BEGIN Pictures::]
+[Picture100]
+   ID = pic.Introduction
+   Description = ""
+   BkgdImg = ""
+
+[Picture6]
+   ID = pic.GrahamHouse
+   Description = ""
+   BkgdImg = ""
+
+[Picture4]
+   ID = pic.GrahamLawnNight
+   Description = ""
+   BkgdImg = ""
+
+[Picture201]
+   ID = pic.Entrance
+   Description = ""
+   BkgdImg = ""
+
+[Picture202]
+   ID = pic.Outside
+   Description = ""
+   BkgdImg = ""
+
+[Picture203]
+   ID = pic.NorthRoom
+   Description = ""
+   BkgdImg = ""
+
+[Picture204]
+   ID = pic.WestRoom
+   Description = ""
+   BkgdImg = ""
+
+[Picture205]
+   ID = pic.EastRoom
+   Description = ""
+   BkgdImg = ""
+
+[Picture2]
+   ID = pic.InnerHanger
+   Description = ""
+   BkgdImg = ""
+
+[Picture3]
+   ID = pic.Watch
+   Description = ""
+   BkgdImg = ""
+
+[Picture36]
+   ID = pic.InnerBay
+   Description = ""
+   BkgdImg = ""
+
+[Picture41]
+   ID = pic.Bathroom
+   Description = ""
+   BkgdImg = ""
+
+[Picture37]
+   ID = pic.ControlRoom
+   Description = ""
+   BkgdImg = ""
+
+[Picture38]
+   ID = pic.OuterBay
+   Description = ""
+   BkgdImg = ""
+
+[Picture39]
+   ID = pic.OuterHanger
+   Description = ""
+   BkgdImg = ""
+
+[Picture5]
+   ID = pic.InPod
+   Description = ""
+   BkgdImg = ""
+
+[Picture8]
+   ID = pic.DavCrashSiteA3
+   Description = ""
+   BkgdImg = ""
+
+[Picture40]
+   ID = pic.Station
+   Description = ""
+   BkgdImg = ""
+
+[Picture7]
+   ID = pic.InPodCrash
+   Description = ""
+   BkgdImg = ""
+
+[Picture10]
+   ID = pic.DavRiverBendA4
+   Description = ""
+   BkgdImg = ""
+
+[Picture24]
+   ID = pic.DavOgreF3
+   Description = ""
+   BkgdImg = ""
+
+[Picture25]
+   ID = pic.DavDwarfF4
+   Description = ""
+   BkgdImg = ""
+
+[Picture11]
+   ID = pic.DavBowlA5
+   Description = ""
+   BkgdImg = ""
+
+[Picture23]
+   ID = pic.DavDaggerF2
+   Description = ""
+   BkgdImg = ""
+
+[Picture26]
+   ID = pic.DavWalnutF5
+   Description = ""
+   BkgdImg = ""
+
+[Picture20]
+   ID = pic.DavRockE4
+   Description = ""
+   BkgdImg = ""
+
+[Picture22]
+   ID = pic.DavTreeF1
+   Description = ""
+   BkgdImg = ""
+
+[Picture19]
+   ID = pic.DavBigLakeRightE2
+   Description = ""
+   BkgdImg = ""
+
+[Picture9]
+   ID = pic.DavCastleLeftA2
+   Description = ""
+   BkgdImg = ""
+
+[Picture21]
+   ID = pic.DavWizardE5
+   Description = ""
+   BkgdImg = ""
+
+[Picture16]
+   ID = pic.DavLakeFGMD4
+   Description = ""
+   BkgdImg = ""
+
+[Picture18]
+   ID = pic.DavWolfE1
+   Description = ""
+   BkgdImg = ""
+
+[Picture12]
+   ID = pic.DavCastleRightB2
+   Description = ""
+   BkgdImg = ""
+
+[Picture17]
+   ID = pic.DavWitchHouseD5
+   Description = ""
+   BkgdImg = ""
+
+[Picture32]
+   ID = pic.DavCastleHall
+   Description = ""
+   BkgdImg = ""
+
+[Picture31]
+   ID = pic.DavCastleCorner
+   Description = ""
+   BkgdImg = ""
+
+[Picture30]
+   ID = pic.DavCastleThrone
+   Description = ""
+   BkgdImg = ""
+
+[Picture14]
+   ID = pic.DavWellTopD1
+   Description = ""
+   BkgdImg = ""
+
+[Picture27]
+   ID = pic.DavWitchHouseInside
+   Description = ""
+   BkgdImg = ""
+
+[Picture28]
+   ID = pic.DavWellBottom
+   Description = ""
+   BkgdImg = ""
+
+[Picture15]
+   ID = pic.DavBigLakeLeftD2
+   Description = ""
+   BkgdImg = ""
+
+[Picture29]
+   ID = pic.DavInWellDive
+   Description = ""
+   BkgdImg = ""
+
+[Picture34]
+   ID = pic.GrahamLawnDay
+   Description = ""
+   BkgdImg = ""
+
+[Picture115]
+   ID = pic.GrahamCastle
+   Description = ""
+   BkgdImg = ""
+
+[Picture118]
+   ID = pic.GrahamHouseMorning
+   Description = ""
+   BkgdImg = ""
+
+[Picture119]
+   ID = pic.DavHillsideDoor
+   Description = ""
+   BkgdImg = ""
+
+[Picture120]
+   ID = pic.DavLabStairs
+   Description = ""
+   BkgdImg = ""
+
+[Picture121]
+   ID = pic.DavLab
+   Description = ""
+   BkgdImg = ""
+[::END Pictures::]
+
+[::BEGIN Sounds::]
+[Sound0]
+   ID = m.Theme
+   Description = "A theme song that can be played while title screen is shown."
+   Key = 0
+   TPQN = 4
+   Visible0 = True
+   Visible1 = True
+   Visible2 = True
+   Visible3 = False
+   Inst0 = 80
+   Inst1 = 80
+   Inst2 = 80
+   Mute0 = False
+   Mute1 = False
+   Mute2 = False
+   Mute3 = False
+   Size = 1586
+
+[Sound1]
+   ID = s.DoorClose
+   Description = "A simple sound effect for an automatic opening door."
+   Key = 0
+   TPQN = 16
+   Inst0 = 80
+   Inst1 = 80
+   Inst2 = 80
+   Mute0 = False
+   Mute1 = False
+   Mute2 = False
+   Mute3 = False
+   Visible0 = True
+   Visible1 = True
+   Visible2 = True
+   Visible3 = True
+   Size = 31
+
+[Sound2]
+   ID = s.DoorOpen
+   Description = "A simple sound effect for an automatic closing door."
+   Key = 0
+   TPQN = 16
+   Inst0 = 80
+   Inst1 = 80
+   Inst2 = 80
+   Mute0 = False
+   Mute1 = False
+   Mute2 = False
+   Mute3 = False
+   Visible0 = True
+   Visible1 = True
+   Visible2 = True
+   Visible3 = True
+   Size = 31
+
+[Sound3]
+   ID = snd.Theme
+   Description = ""
+   Key = 0
+   TPQN = 4
+   Inst0 = 80
+   Inst1 = 80
+   Inst2 = 80
+   Mute0 = False
+   Mute1 = False
+   Mute2 = False
+   Mute3 = False
+   Visible0 = True
+   Visible1 = True
+   Visible2 = True
+   Visible3 = True
+
+[Sound4]
+   ID = snd.GrahamDead
+   Description = ""
+   Key = 0
+   TPQN = 4
+   Inst0 = 80
+   Inst1 = 80
+   Inst2 = 80
+   Mute0 = False
+   Mute1 = False
+   Mute2 = False
+   Mute3 = False
+   Visible0 = True
+   Visible1 = True
+   Visible2 = True
+   Visible3 = True
+
+[Sound5]
+   ID = snd.RogerDead
+   Description = ""
+   Key = 0
+   TPQN = 16
+   Inst0 = 80
+   Inst1 = 80
+   Inst2 = 80
+   Mute0 = False
+   Mute1 = False
+   Mute2 = False
+   Mute3 = False
+   Visible0 = True
+   Visible1 = True
+   Visible2 = True
+   Visible3 = True
+
+[Sound6]
+   ID = snd.SpaceTravel
+   Description = ""
+   Key = 0
+   TPQN = 4
+   Inst0 = 80
+   Inst1 = 80
+   Inst2 = 80
+   Mute0 = False
+   Mute1 = False
+   Mute2 = False
+   Mute3 = False
+   Visible0 = True
+   Visible1 = True
+   Visible2 = True
+   Visible3 = True
+
+[Sound7]
+   ID = snd.MonsterAlert
+   Description = ""
+   Key = 0
+   TPQN = 4
+   Inst0 = 80
+   Inst1 = 80
+   Inst2 = 80
+   Mute0 = False
+   Mute1 = False
+   Mute2 = False
+   Mute3 = False
+   Visible0 = True
+   Visible1 = True
+   Visible2 = True
+   Visible3 = True
+
+[Sound8]
+   ID = snd.Tube
+   Description = ""
+   Key = 0
+   TPQN = 4
+   Inst0 = 80
+   Inst1 = 80
+   Inst2 = 80
+   Mute0 = False
+   Mute1 = False
+   Mute2 = False
+   Mute3 = False
+   Visible0 = True
+   Visible1 = True
+   Visible2 = True
+   Visible3 = True
+
+[Sound9]
+   ID = snd.WatchBeep
+   Description = ""
+   Key = 0
+   TPQN = 16
+   Inst0 = 80
+   Inst1 = 80
+   Inst2 = 80
+   Mute0 = False
+   Mute1 = False
+   Mute2 = False
+   Mute3 = False
+   Visible0 = True
+   Visible1 = True
+   Visible2 = True
+   Visible3 = True
+
+[Sound10]
+   ID = snd.SpaceDoor
+   Description = ""
+   Key = 0
+   TPQN = 4
+   Inst0 = 80
+   Inst1 = 80
+   Inst2 = 80
+   Mute0 = False
+   Mute1 = False
+   Mute2 = False
+   Mute3 = False
+   Visible0 = True
+   Visible1 = True
+   Visible2 = True
+   Visible3 = True
+
+[Sound11]
+   ID = snd.HBD
+   Description = ""
+   Key = 0
+   TPQN = 16
+   Inst0 = 80
+   Inst1 = 80
+   Inst2 = 80
+   Mute0 = False
+   Mute1 = False
+   Mute2 = False
+   Mute3 = False
+   Visible0 = True
+   Visible1 = True
+   Visible2 = True
+   Visible3 = True
+[::END Sounds::]
+
+[::BEGIN Views::]
+[View220]
+   ID = vw.Inv.TestItem
+   Description = "Inventory view of a sample item that includes a border."
+   Size = 286
+
+[View68]
+   ID = vw.titleFeatherHat
+   Description = ""
+
+[View5]
+   ID = vw.Summons
+   Description = ""
+
+[View6]
+   ID = vw.Hat
+   Description = ""
+
+[View7]
+   ID = vw.Teapot
+   Description = ""
+
+[View8]
+   ID = vw.Teacup
+   Description = ""
+
+[View59]
+   ID = vw.GrahamHouseWindow
+   Description = ""
+
+[View49]
+   ID = vw.GrahamHouseDoor
+   Description = ""
+
+[View105]
+   ID = vw.GrahamSleep
+   Description = ""
+
+[View47]
+   ID = vw.Wolf
+   Description = ""
+
+[View101]
+   ID = vw.GrahamFightCloud
+   Description = ""
+
+[View69]
+   ID = vw.InvTeapot
+   Description = "A Pot is a pot is a pot"
+
+[View89]
+   ID = vw.InvGlassSharp
+   Description = ""
+
+[View83]
+   ID = vw.InvSummons
+   Description = ""
+
+[View84]
+   ID = vw.InvTeacup
+   Description = ""
+
+[View85]
+   ID = vw.InvTea
+   Description = ""
+
+[View86]
+   ID = vw.InvHat
+   Description = "Your trusty hat! Wow. You love this hat. It's triangular and blue."
+
+[View87]
+   ID = vw.InvBroom
+   Description = ""
+
+[View88]
+   ID = vw.InvGlass
+   Description = ""
+
+[View90]
+   ID = vw.InvCake
+   Description = ""
+
+[View91]
+   ID = vw.InvFeather
+   Description = ""
+
+[View92]
+   ID = vw.InvQuill
+   Description = ""
+
+[View93]
+   ID = vw.InvInk
+   Description = ""
+
+[View94]
+   ID = vw.InvPaper
+   Description = ""
+
+[View95]
+   ID = vw.InvInvitation
+   Description = ""
+
+[View96]
+   ID = vw.InvAdventureHat
+   Description = ""
+
+[View201]
+   ID = vw.EgoDead
+   Description = "Contains two different versions of Ego after dying. Add others to show additional ways Ego might die"
+
+[View202]
+   ID = vw.Door
+   Description = ""
+
+[View203]
+   ID = vw.WestRoomArt
+   Description = "it's handy to keep cels and loops that are added to a room's picture in one view"
+
+[View200]
+   ID = vw.Ego
+   Description = "This is the default ego view"
+
+[View0]
+   ID = vw.GrahamNoHat
+   Description = ""
+
+[View1]
+   ID = vw.GrahamHatNoFeather
+   Description = ""
+
+[View158]
+   ID = vw.Splat
+   Description = ""
+
+[View151]
+   ID = vw.RogerSpacesuitBroom
+   Description = ""
+
+[View152]
+   ID = vw.BigShuttle
+   Description = ""
+
+[View12]
+   ID = vw.RogerSpacesuitA
+   Description = ""
+
+[View70]
+   ID = vw.RogerExplode
+   Description = ""
+
+[View21]
+   ID = vw.WatchBoss
+   Description = ""
+
+[View46]
+   ID = vw.WatchLights
+   Description = ""
+
+[View43]
+   ID = vw.Tram
+   Description = ""
+
+[View40]
+   ID = vw.Closet
+   Description = ""
+
+[View41]
+   ID = vw.BathroomDoor
+   Description = ""
+
+[View42]
+   ID = vw.HangerDoorLeft
+   Description = ""
+
+[View36]
+   ID = vw.LockedDoor
+   Description = ""
+
+[View37]
+   ID = vw.RogerPotty
+   Description = ""
+
+[View38]
+   ID = vw.Waterfill
+   Description = ""
+
+[View39]
+   ID = vw.Overflow
+   Description = ""
+
+[View16]
+   ID = vw.Pod
+   Description = ""
+
+[View17]
+   ID = vw.PodPlatform
+   Description = ""
+
+[View18]
+   ID = vw.CockpitThrottle
+   Description = ""
+
+[View19]
+   ID = vw.CockpitButtons
+   Description = ""
+
+[View72]
+   ID = vw.Decal
+   Description = ""
+
+[View73]
+   ID = vw.Star
+   Description = ""
+
+[View23]
+   ID = vw.CockpitPull
+   Description = ""
+
+[View22]
+   ID = vw.CockpitPush
+   Description = ""
+
+[View102]
+   ID = vw.WorldWarp
+   Description = ""
+
+[View10]
+   ID = vw.CrashingPod
+   Description = ""
+
+[View24]
+   ID = vw.RogerSplash
+   Description = ""
+
+[View25]
+   ID = vw.RogerSwim
+   Description = ""
+
+[View74]
+   ID = vw.GlassSparkle
+   Description = ""
+
+[View66]
+   ID = vw.Ogre
+   Description = ""
+
+[View67]
+   ID = vw.OgreMunch
+   Description = ""
+
+[View29]
+   ID = vw.Mist
+   Description = ""
+
+[View60]
+   ID = vw.Hawk
+   Description = ""
+
+[View61]
+   ID = vw.FeatherFall
+   Description = ""
+
+[View80]
+   ID = vw.Witch
+   Description = ""
+
+[View81]
+   ID = vw.WitchKill
+   Description = ""
+
+[View64]
+   ID = vw.RogerEaten
+   Description = ""
+
+[View26]
+   ID = vw.CastleFlags
+   Description = ""
+
+[View27]
+   ID = vw.CastleCrocs
+   Description = ""
+
+[View28]
+   ID = vw.CastleDoors
+   Description = ""
+
+[View82]
+   ID = vw.Wizard
+   Description = ""
+
+[View100]
+   ID = vw.RogerStoned
+   Description = ""
+
+[View111]
+   ID = vw.FGM
+   Description = ""
+
+[View48]
+   ID = vw.FightCloud
+   Description = ""
+
+[View30]
+   ID = vw.WitchDoor
+   Description = ""
+
+[View77]
+   ID = vw.HBD
+   Description = ""
+
+[View52]
+   ID = vw.PersonA
+   Description = ""
+
+[View53]
+   ID = vw.PersonB
+   Description = ""
+
+[View55]
+   ID = vw.GrahamKing
+   Description = ""
+
+[View56]
+   ID = vw.Rosella
+   Description = ""
+
+[View57]
+   ID = vw.Alexander
+   Description = ""
+
+[View54]
+   ID = vw.Valanice
+   Description = ""
+
+[View58]
+   ID = vw.Crowd
+   Description = ""
+
+[View76]
+   ID = vw.Person3
+   Description = ""
+
+[View97]
+   ID = vw.PersonG1
+   Description = ""
+
+[View98]
+   ID = vw.PersonG2
+   Description = ""
+
+[View34]
+   ID = vw.RogerBucket
+   Description = ""
+
+[View33]
+   ID = vw.Bucket
+   Description = ""
+
+[View32]
+   ID = vw.Cake
+   Description = ""
+
+[View79]
+   ID = vw.Paper
+   Description = ""
+
+[View31]
+   ID = vw.WitchCabinet
+   Description = ""
+
+[View35]
+   ID = vw.Rope
+   Description = ""
+
+[View51]
+   ID = vw.RogerClimbRope
+   Description = ""
+
+[View50]
+   ID = vw.RogerDive
+   Description = ""
+
+[View75]
+   ID = vw.Trunk
+   Description = ""
+
+[View44]
+   ID = vw.Lift
+   Description = ""
+
+[View71]
+   ID = vw.Plate
+   Description = ""
+
+[View78]
+   ID = vw.GrahamAdvHat
+   Description = ""
+
+[View159]
+   ID = vw.HillDoor
+   Description = ""
+
+[View160]
+   ID = vw.LarryDump
+   Description = ""
+
+[View161]
+   ID = vw.EgoParts
+   Description = ""
+
+[View162]
+   ID = vw.SierraWorker
+   Description = ""
+
+[View163]
+   ID = vw.RogerFall
+   Description = ""
+
+[View11]
+   ID = vw.Roger
+   Description = ""
+
+[View164]
+   ID = vw.MIB
+   Description = ""
+
+[View165]
+   ID = vw.MIBFlash
+   Description = ""
+
+[View132]
+   ID = vw.Roger1
+   Description = ""
+
+[View166]
+   ID = vw.PersonL
+   Description = ""
+
+[View221]
+   ID = vw.Cedric
+   Description = ""
+[::END Views::]

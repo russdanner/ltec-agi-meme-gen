@@ -1,0 +1,74 @@
+[*********************************************************************
+[
+[ lgc.Debug
+[
+[ When debugging, use this logic to handle debug commands.
+[
+[*********************************************************************
+
+[***************************************
+[ LOCAL DEFINES
+[***************************************
+#define xPos            v240
+#define yPos            v241
+
+#define tmpVarA         v254
+#define tmpVarB         v255
+
+#define comment          s20 
+
+[***************************************
+[ MAIN CODE BLOCK 
+[***************************************
+
+
+
+
+[ if an unknown word was entered and input not matched yet
+if (isset(haveInput) && !isset(haveMatch) && 
+    unknownWordNum > 0) {
+  [ adjust input/match flags to indicate nothing to parse
+  set(haveMatch);
+  reset(haveInput);
+  [ log the unknown word
+  if (unknownWordNum == 1) {
+    log("%m1%w1");
+  }
+  if (unknownWordNum == 2) {
+    log("%m1%w2");
+  }
+  if (unknownWordNum == 3) {
+    log("%m1%w3");
+  }
+  if (unknownWordNum == 4) {
+    log("%m1%w4");
+  }
+  if (unknownWordNum == 5) {
+    log("%m1%w5");
+  }
+  if (unknownWordNum == 6) {
+    log("%m1%w6");
+  }
+  if (unknownWordNum == 7) {
+    log("%m1%w7");
+  }
+  if (unknownWordNum == 8) {
+    log("%m1%w8");
+  }
+  if (unknownWordNum == 9) {
+    log("%m1%w9");
+  }
+  if (unknownWordNum == 10) {
+    log("%m1%w10");
+  }
+  print("Logged an unknown word.");
+}
+
+
+return();
+
+[***************************************
+[ DECLARED MESSAGES
+[***************************************
+#message 1 "Unknown word: "
+#message 2 "Comment: "

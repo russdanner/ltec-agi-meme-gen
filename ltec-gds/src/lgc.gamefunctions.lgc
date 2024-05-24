@@ -1,0 +1,58 @@
+[*********************************************************************
+[
+[ lgc.GameFunctions
+[
+[ You should use this logic to perform any game specific functions, 
+[ such as counting down timers, etc and processing player input 
+[ related to the game (such as examining/using inventory items) and 
+[ any other things that are required in several rooms that you don't
+[ want to duplicate in each room.
+[
+[ This logic is called from logic 0, on every cycle, unless 
+[ disableGameFunctions is set.
+[
+[ Sierra did not use a separate logic for all this - they just did it
+[ all from logic 0. I find it is neater this way, as you can keep your
+[ game specific processing separate from other system-related things
+[ (although these may require some modification for your game). Also,
+[ this makes logic 0 easier to manage.
+[
+[*********************************************************************
+
+#define entryDelay v240
+
+[***************************************
+[ LOCAL DEFINES
+[***************************************
+[ none
+
+[***************************************
+[ MAIN CODE BLOCK 
+[***************************************
+
+[ if a new room was visited for first time
+[if (!egoExplored && currentRoom != rm.Entrance) {
+[  [ if ego has been in the room long enough, award one score point for
+[  [ exploration
+[  if (elapsedSeconds != oldSeconds) {
+[    [ increment delay counter until ~2 seconds has passed
+[    entryDelay += 1;
+[    if (entryDelay == 2) {
+[      print("You have explored a new room in this world! Good job!");
+[      currentScore += 1;
+[      set(egoExplored);
+[      entryDelay = 0;
+[    }
+[  }
+[}
+  
+[***************************************
+[ PROCESS PLAYER INPUT
+[***************************************
+
+:done
+return();
+
+[***************************************
+[ DECLARED MESSAGES
+[***************************************

@@ -1,0 +1,107 @@
+[********************************************************************
+[
+[ rm.Title
+[
+[ This is an example of an intro screen, with scrolling credits and
+[ a theme song.
+[
+[********************************************************************
+
+[***************************************
+[ LOCAL DEFINES
+[***************************************
+#define cedric                      o1
+#define roger                       o2
+
+#define objDir                     v223
+
+[***************************************
+[ FIRST CYCLE ONLY
+[***************************************
+if (newRoom) {
+  [ load, draw, discard the picture for the current room
+  load.pic(currentRoom);
+  draw.pic(currentRoom);
+  discard.pic(currentRoom);
+  animationInterval = NORMAL_SPEED;
+  objDir = DOWN;
+
+  [ hard to undertand text vars
+  reset(fDoAction);
+    
+  [ disable player control and input
+  status.line.off();
+  prevent.input();
+  program.control();
+  
+  [ initialize the feather element that hints at the win
+  load.view(vw.Cedric);
+  load.view(vw.Roger);
+  
+  animate.obj(cedric);
+  animate.obj(roger);
+
+  set.view(cedric, vw.Cedric);
+  set.loop(cedric, 0);
+  fix.loop(cedric);
+  set.cel(cedric, 1);
+  position(cedric, 60, 140);
+  
+  set.view(roger, vw.Roger);
+  set.loop(roger, 1);
+  set.cel(roger, 0);
+  fix.loop(roger);
+  position(roger, 90, 140);
+
+  draw(cedric);
+  draw(roger);
+  
+  [ show the picture on screen
+  show.pic(); 
+  
+  [ make sure keybuffer is empty
+  lastChar = 0;
+
+  [ Display game title
+  display(10, 12, m12);     
+  display(12, 14, m13);    
+  
+  [ Display by message
+  display(23, 9, m2);
+  display(24, 8, m3);
+  
+}
+
+
+[***************************************
+[ NON-INPUT CODE 
+[***************************************
+
+
+[***************************************
+[ CHECK FOR AN EXIT CONDITION
+[***************************************
+[ check for a keypress or joystick button
+if ((have.key() || controller(keyJoyBtn1))) {
+  [ allow menu use
+  set(enableMenu);
+  [ game functions are no longer disabled
+  reset(disableGameFunctions);
+  [ begin game in starting room
+  new.room(rm.GrahamHouse); [ ##LE001##
+  [new.room(rm.InPod);
+}
+
+return();
+
+[***************************************
+[ DECLARED MESSAGES
+[***************************************
+#message 2 "let-them-eat-cake.com"
+#message 3 "One Guy from CrafterCMS"
+
+#message 12 "AGI Meme Gen"
+#message 13 "Version 1.0.0"
+
+#message 14 "Press Any Key"
+#message 15 "to Continue"
