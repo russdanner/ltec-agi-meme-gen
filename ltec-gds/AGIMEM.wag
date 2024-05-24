@@ -56,16 +56,16 @@
    Description = "This logic runs in every interpreter cycle and calls other logics as needed."
 
 [Logic90]
-   CompCRC32 = &HB4164775
-   CRC32 = &HB4164775
+   CompCRC32 = &H31E905F6
+   CRC32 = &H31E905F6
    ID = lgc.GameFunctions
    IsRoom = False
    Size = 641
    Description = "Game-specific functions\n\nYou should use this logic to perform any game specific functions, such as counting down timers, etc and processing player input related to the game (such as examining/using inventory items) and any other things that are required in several rooms that you don't want to duplicate in each room. \n\nThis logic is called from logic 0, on every cycle, unless disableGameFunctions is set.\n\nSierra did not use a separate logic for all this - they just did it all from logic 0. I find it is neater this way, as you can keep your game specific processing separate from other system-related things (although these may require some modification for your game). Also, this makes logic 0 easier to manage."
 
 [Logic91]
-   CompCRC32 = &HABE3359E
-   CRC32 = &HABE3359E
+   CompCRC32 = &HD8644111
+   CRC32 = &HD8644111
    IsRoom = False
    ID = lgc.Init
    Size = 162
@@ -146,8 +146,8 @@
 [Logic6]
    ID = rm.GrahamHouse
    Description = ""
-   CRC32 = &HEF3AFB6C
-   CompCRC32 = &HEF3AFB6C
+   CRC32 = &HF06713AE
+   CompCRC32 = &HF06713AE
    IsRoom = True
 
 [::END Logics::]

@@ -97,12 +97,16 @@ if (newRoom) {
     draw(ego);
     
     [ display the picture on screen
-    show.pic();
+    show.pic();    
 }
 
 [***************************************
 [ NON-INPUT CODE 
 [***************************************
+
+if(said("clear", "prompt")) {
+    set.string(inputPrompt, ">");
+}
 
 if(!isset(fKingMessageDisplayed)) {
   print("You could be playing Let Them Eat Cake ... but let's make AGI Memes instead");
@@ -162,6 +166,11 @@ if(said("move", "object")) {
     if(equaln(vObject, 10)) { erase(o10); position.v(o10, vObjectX, vObjectY); draw(o10); }
     if(equaln(vObject, 11)) { erase(o11); position.v(o11, vObjectX, vObjectY); draw(o11); }
     if(equaln(vObject, 12)) { erase(o12); position.v(o12, vObjectX, vObjectY); draw(o12); }
+}
+
+if(said("print")) {
+    get.string(s5, ">", 24, 1, 40);
+    print("%s5");
 }
 
 if(said("set", "view")) {

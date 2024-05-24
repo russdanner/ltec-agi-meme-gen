@@ -50,32 +50,6 @@
 [ PROCESS PLAYER INPUT
 [***************************************
 
-[ if player has provided input and match not yet found (regardless
-[ of any unknown words)
-[ do said tests
-if (haveInput && !haveMatch) {
-  [ put all generic said tests (those that apply in all rooms) here
-  
-  [ if player says any dirty words
-  if (said("rol")) {
-    ++badWordCount;
-    if (badWordCount == 1) {
-      [ first warning
-      print("I am going to tell on you!");
-    }
-    if (badWordCount == 2) {
-      [second warning
-      print("Don't say anymore words like that!");
-    }
-    if (badWordCount == 3) {
-      [ no more warnings
-      print("Don't say I didn't warn you.");
-      quit(1);
-    }
-  }
-}
-
-  
 :done
 return();
 

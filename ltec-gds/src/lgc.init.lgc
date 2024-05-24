@@ -74,7 +74,7 @@ attenuation = 0;
 configure.screen(1, 22, 0);
 
 [ assign input prompt and cursor character
-set.string(inputPrompt, "Command >");
+set.string(inputPrompt, ">");
 set.cursor.char(cursor);
 
 return();
